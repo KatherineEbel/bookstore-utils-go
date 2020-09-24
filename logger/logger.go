@@ -7,13 +7,13 @@ import (
 	"go.uber.org/zap/zapcore"
 )
 
-var log logger
+var log Logger
 
-type logger struct {
+type Logger struct {
 	log *zap.Logger
 }
 
-func (l logger) Printf(format string, v ...interface{}) {
+func (l Logger) Printf(format string, v ...interface{}) {
 	if len(v) == 0 {
 		Info(format)
 		return
@@ -39,6 +39,10 @@ func init() {
 	if log.log, err = logConfig.Build(); err != nil {
 		panic(err)
 	}
+}
+
+func GetLogger() Logger {
+	return log
 }
 
 func Info(msg string, tags ...zap.Field) {
