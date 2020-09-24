@@ -41,3 +41,11 @@ func TestNewDatabaseError(t *testing.T) {
 	assert.EqualValues(t, err.Message, "database error")
 	assert.EqualValues(t, err.Message, err.Error())
 }
+
+func TestNewUnauthorizedError(t *testing.T) {
+	err := NewUnauthorizedError("request requires authorization")
+	assert.NotNil(t, err)
+	assert.EqualValues(t, err.Code, 401)
+	assert.EqualValues(t, err.Message, "request requires authorization")
+	assert.EqualValues(t, err.Message, err.Error())
+}

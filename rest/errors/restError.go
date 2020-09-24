@@ -33,6 +33,14 @@ func NewNotFoundError(msg string) *RestError {
 	}
 }
 
+func NewUnauthorizedError(msg string) *RestError {
+	return &RestError{
+		Message: msg,
+		Code:    http.StatusUnauthorized,
+		Causes:  nil,
+	}
+}
+
 func NewInternalServerError(msg string, errs ...error) *RestError {
 	var causes []interface{}
 	for _, err := range errs {
